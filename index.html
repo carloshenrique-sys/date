@@ -51,7 +51,7 @@
             height: 150px; 
             border-radius: 10px; 
             border: 3px solid transparent; 
-            object-fit: cover; /* Garante que a foto não fique achatada */
+            object-fit: cover;
         }
         .profile:hover img { 
             border-color: white; 
@@ -80,7 +80,6 @@
         .hero { 
             position: relative; 
             height: 65vh; 
-            /* Fundo com imagem de sushi escurecida para dar o clima Netflix */
             background: linear-gradient(to top, #141414 5%, rgba(20,20,20,0.4)), url('https://images.unsplash.com/photo-1579871494447-9811cf80d66c?q=80&w=1000') center/cover; 
             border-radius: 10px; 
             display: flex; 
@@ -169,11 +168,13 @@
             document.getElementById('screen2').style.display = 'block';
         }
 
-        // Função para redirecionar para o WhatsApp
+        // Função para redirecionar para o WhatsApp à prova de falhas de emoji
         function confirmarDate() {
             var telefone = "5579988410626";
-            var mensagem = "Oii! Pode preparar o hashi 🥢, está confirmado o date na sexta❤️";
-            var url = "https://wa.me/" + telefone + "?text=" + encodeURIComponent(mensagem);
+            // A mensagem já foi convertida para URL Encoding (o hashi e o coração estão aqui protegidos)
+            var mensagemSegura = "Oii!%20Pode%20preparar%20o%20hashi%20%F0%9F%A5%A2%2C%20est%C3%A1%20confirmado%20o%20date%20na%20sexta%E2%9D%A4%EF%B8%8F";
+            
+            var url = "https://wa.me/" + telefone + "?text=" + mensagemSegura;
             
             window.location.href = url;
         }
