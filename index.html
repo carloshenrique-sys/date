@@ -168,13 +168,16 @@
             document.getElementById('screen2').style.display = 'block';
         }
 
-        // Função para redirecionar para o WhatsApp à prova de falhas de emoji
+        // Função para redirecionar para o WhatsApp
         function confirmarDate() {
             var telefone = "5579988410626";
-            // A mensagem já foi convertida para URL Encoding (o hashi e o coração estão aqui protegidos)
-            var mensagemSegura = "Oii!%20Pode%20preparar%20o%20hashi%20%F0%9F%A5%A2%2C%20est%C3%A1%20confirmado%20o%20date%20na%20sexta%E2%9D%A4%EF%B8%8F";
             
-            var url = "https://wa.me/" + telefone + "?text=" + mensagemSegura;
+            // Usando códigos Unicode para os emojis (100% imune a erros de codificação)
+            // \uD83E\uDD62 = Hashi
+            // \u2764\uFE0F = Coração Vermelho
+            var mensagem = "Oii! Pode preparar o hashi \uD83E\uDD62, está confirmado o date na sexta\u2764\uFE0F";
+            
+            var url = "https://wa.me/" + telefone + "?text=" + encodeURIComponent(mensagem);
             
             window.location.href = url;
         }
