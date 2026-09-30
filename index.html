@@ -5,7 +5,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>FlixDate - Sexta-feira</title>
     <style>
-        /* Estilos base da página */
         body { 
             background-color: #141414; 
             color: white; 
@@ -21,8 +20,6 @@
             text-transform: uppercase; 
             letter-spacing: 2px; 
         }
-
-        /* Tela 1: Seleção de Perfil */
         #screen1 { 
             display: flex; 
             flex-direction: column; 
@@ -64,8 +61,6 @@
         .profile:hover span { 
             color: white; 
         }
-
-        /* Tela 2: Detalhes do Date no Sushi */
         #screen2 { 
             display: none; 
             padding: 20px; 
@@ -134,11 +129,13 @@
 
     <div class="logo">FlixDate</div>
 
+    <!-- Áudio oculto que será tocado -->
+    <audio id="trilhaSonora" src="musica.mp3" loop></audio>
+
     <!-- TELA 1: Quem está assistindo? -->
     <div id="screen1">
         <h1>Quem vai sair comigo na sexta?</h1>
         <div class="profile" onclick="selecionarPerfil()">
-            <!-- Puxando a foto local referenciada -->
             <img src="image_176748.jpg" alt="A mais gata">
             <span>A mais gata</span>
         </div>
@@ -162,21 +159,22 @@
     </div>
 
     <script>
-        // Função para esconder a tela de perfis e mostrar a tela do date
         function selecionarPerfil() {
+            // Esconde tela 1 e mostra tela 2
             document.getElementById('screen1').style.display = 'none';
             document.getElementById('screen2').style.display = 'block';
+            
+            // Toca a música
+            var musica = document.getElementById('trilhaSonora');
+            musica.volume = 0.5; // Volume em 50% para não assustar
+            musica.play();
         }
 
-        // Função para redirecionar para o WhatsApp
         function confirmarDate() {
             var telefone = "5579988410626";
             
-            // Usando códigos Unicode para os emojis (100% imune a erros de codificação)
-            // \uD83E\uDD62 = Hashi
-            // \u2764\uFE0F = Coração Vermelho
+            // Códigos Unicode para evitar erro nos emojis
             var mensagem = "Oii! Pode preparar o hashi \uD83E\uDD62, está confirmado o date na sexta\u2764\uFE0F";
-            
             var url = "https://wa.me/" + telefone + "?text=" + encodeURIComponent(mensagem);
             
             window.location.href = url;
